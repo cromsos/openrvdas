@@ -34,7 +34,7 @@ except ImportError:
 ###############################################################################
 
 
-class MySQLConnector:
+class PGConnector:
     """foo."""
     # Name of table in which we will store mappings from record field
     # names to the tnames of the tables containing those fields.
@@ -104,7 +104,7 @@ class MySQLConnector:
         else:
             exists = False
         cursor.close()
-    return exists
+        return exists
 
     ############################
     def write_record(self, record):
@@ -277,31 +277,31 @@ class MySQLConnector:
         cursor = self.connection.cursor()
         cursor.execute(query)
 
-    results = {}
-    for values in cursor:
-        (id, timestamp, field_name,
-         int_value, float_value, str_value, bool_value,
-         source) = values
+        results = {}
+        for values in cursor:
+            (id, timestamp, field_name,
+             int_value, float_value, str_value, bool_value,
+             source) = values
 
-        if not field_name in results:
-            results[field_name] = []
+            if not field_name in results:
+                results[field_name] = []
 
-        if int_value is not None:
-            val = int_value
-        elif float_value is not None:
-            val = float_value
-        elif str_value is not None:
-            val = str_value
-        elif float_value is not None:
-            val = int_value
-        elif bool_value is not None:
-            val = bool(bool_value)
+            if int_value is not None:
+                val = int_value
+            elif float_value is not None:
+                val = float_value
+            elif str_value is not None:
+                val = str_value
+            elif float_value is not None:
+                val = int_value
+            elif bool_value is not None:
+                val = bool(bool_value)
 
-        results[field_name].append((timestamp, val))
-        self.next_id = id + 1
-        self.last_timestamp = timestamp
-    cursor.close()
-    return results
+            results[field_name].append((timestamp, val))
+            self.next_id = id + 1
+            self.last_timestamp = timestamp
+        cursor.close()
+        return results
 
     ############################
     def delete_table(self,  table_name):
@@ -314,4 +314,3 @@ class MySQLConnector:
     def close(self):
         """Close connection."""
         self.connection.close()
-

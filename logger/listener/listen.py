@@ -59,6 +59,7 @@ from logger.transforms.qc_filter_transform import QCFilterTransform
 from logger.transforms.slice_transform import SliceTransform
 from logger.transforms.timestamp_transform import TimestampTransform
 from logger.transforms.parse_nmea_transform import ParseNMEATransform
+from logger.transforms.parse_suds_xml_transform import ParseXMLTransform
 from logger.transforms.xml_aggregator_transform import XMLAggregatorTransform
 from logger.transforms.true_winds_transform import TrueWindsTransform
 from logger.transforms.derived_data_transform import DerivedDataTransform
@@ -216,7 +217,7 @@ if __name__ == '__main__':
   # Transforms
   parser.add_argument('--transform_prefix', dest='prefix', default='',
                       help='Prefix each record with this string')
-  
+
   parser.add_argument('--transform_timestamp', dest='timestamp',
                       action='store_true', default=False,
                       help='Timestamp each record as it is read')
@@ -244,6 +245,13 @@ if __name__ == '__main__':
                       action='store_true', default=False,
                       help='Convert tagged, timestamped NMEA records into '
                       'Python DASRecords.')
+
+  parser.add_argument('--transform_parse_xml', dest='parse_xml',
+                        action='store_true', default=False,
+                        help='Convert tagged, timestamped NMEA records into '
+                        'Python DASRecords.')
+  # parser.add_argument('--transform_parse_xml', dest='parse_xml', default='',
+  #                    help='Convert SUDS records into Python DASRecords')
 
   parser.add_argument('--time_format', dest='time_format',
                       default=timestamp.TIME_FORMAT,
@@ -280,7 +288,7 @@ if __name__ == '__main__':
                       action='store_true', default=False,
                       help='Display the most current DASRecord field values '
                       'on the terminal.')
-  
+
   ############################
   # Miscellaneous args
   parser.add_argument('--check_format', dest='check_format',
@@ -294,7 +302,7 @@ if __name__ == '__main__':
   ############################
   # Set up logging before we do any other argument parsing (so that we
   # can log problems with argument parsing.)
-  parsed_args = parser.parse_args() 
+  parsed_args = parser.parse_args()
   LOGGING_FORMAT = '%(asctime)-15s %(filename)s:%(lineno)d %(message)s'
   logging.basicConfig(format=LOGGING_FORMAT)
 
@@ -460,6 +468,8 @@ if __name__ == '__main__':
         transforms.append(QCFilterTransform(new_args.qc_filter))
       if new_args.parse_nmea:
         transforms.append(ParseNMEATransform(time_format=all_args.time_format))
+      if new_args.parse_xml:
+        transforms.append(ParseXMLTransform())
       if new_args.aggregate_xml:
         transforms.append(XMLAggregatorTransform(new_args.aggregate_xml))
 
