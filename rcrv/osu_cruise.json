@@ -1,0 +1,469 @@
+{
+    "templates": {
+    },
+    "vars": {
+    },
+    "cruise": {
+        "end": "2017-02-15",
+        "start": "2017-02-25",
+        "id": "RCRV20XX"
+    },
+    "default_mode": "off",
+    "modes": {
+        "port": {
+        },
+        "underway": {
+            "ANEMOMOMETER": {  // One network reader, enclosed in a list
+                        "name": "anemometer",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30301"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                    		      "filename": "/home/rvdas/openrvdas/output/anemo001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "ECHOSOUNDER": {  // One network reader, enclosed in a list
+                        "name": "echosounder",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30302"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                    		      "filename": "/home/rvdas/openrvdas/output/echowell001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "FLUOROMETER": {  // One network reader, enclosed in a list
+                        "name": "fluorometer",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30303"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                    		      "filename": "/home/rvdas/openrvdas/output/fluoro001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "GNSS": {  // One network reader, enclosed in a list
+                        "name": "gnss",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30304"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                    		      "filename": "/home/rvdas/openrvdas/output/gnss001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "GYRO": {  // One network reader, enclosed in a list
+                        "name": "gyro",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30305"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/gyro001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "METSTATION_STBD": {  // One network reader, enclosed in a list
+                        "name": "metstation_stbd",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30306"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/metstn001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "METSTATION_bow": {  // One network reader, enclosed in a list
+                        "name": "metstation_bow",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30307"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/metstn002.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "RADIOMETER": {  // One network reader, enclosed in a list
+                        "name": "radiometer",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30308"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/radiom001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "RADIOMETER_PAR": {  // One network reader, enclosed in a list
+                        "name": "radiometer_par",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30309"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/radiom002.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "RAINGAUGE": {  // One network reader, enclosed in a list
+                        "name": "raingauge",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30310"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/rain001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "SPEEDLOG": {  // One network reader, enclosed in a list
+                        "name": "speedlog",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30311"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/speedlog001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "THERMOMETER_FWD": {  // One network reader, enclosed in a list
+                        "name": "thermometer_fwd",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30312"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/thermo001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "THERMOMETER_HULL": {  // One network reader, enclosed in a list
+                        "name": "thermometer_hull",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30312"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/thermo002.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "TRANSMISSOMETER": {  // One network reader, enclosed in a list
+                        "name": "transmissometer",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30314"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/transmiss001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            },
+            "THERMOSALINOGRAPH": {  // One network reader, enclosed in a list
+                        "name": "thermosalinograph",
+                        "readers": [
+                            {
+                                "class": "NetworkReader",
+                                "kwargs": {    // initialization kwargs
+                                              "network": ":30315"
+                                          }
+                            }
+                        ],
+                        // XML parser
+                        "transforms": [
+                            {
+                                "class": "ParseXMLTransform",
+                                "kwargs": {}
+                            }
+                        ],
+
+                        // Only a single writer, not enclosed in a list, to demonstrate/test
+                        // that lists are only needed if we've got multiple components.
+                        "writers": {
+                            "class": "TextFileWriter",
+                            "kwargs": {   // initialization kwargs
+                                          // no filename, so write to stdout
+                                  "filename": "/home/rvdas/openrvdas/output/tsg001.txt"
+                                      }
+                        },
+                        "interval": 0.2,
+                        "check_format": false
+            }
+        },
+        "off": {}
+    }
+}
